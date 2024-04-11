@@ -22,12 +22,55 @@ class HttpParserTest {
 
     @Test
     void parseHttpRequest() {
-        httpParser.parseHttpRequest(
-                generateValidTestCase()
-        );
+        HttpRequest request = null;
+        try {
+            request = httpParser.parseHttpRequest(
+                    generateValidGETTestCase()
+            );
+        } catch (HttpParsingException e) {
+            fail(e);
+        }
+
+        assertEquals(request.getMethod(), HttpMethod.GET);
     }
 
-    private InputStream generateValidTestCase(){
+    @Test
+    void parseHttpRequestBadMethod1() {
+        try {
+            HttpRequest request = httpParser.parseHttpRequest(
+                    generateBadTestCaseMethodName1()
+            );
+          //  fail();
+        } catch (HttpParsingException e) {
+            assertEquals(e.getErrorCode(), HttpStatusCodes.SERVER_ERROR_501_NOT_IMPLEMENTED);
+        }
+    }
+
+    @Test
+    void parseHttpRequestBadMethod2() {
+        try {
+            HttpRequest request = httpParser.parseHttpRequest(
+                    generateBadTestCaseMethodName2()
+            );
+            //  fail();
+        } catch (HttpParsingException e) {
+            assertEquals(e.getErrorCode(), HttpStatusCodes.SERVER_ERROR_501_NOT_IMPLEMENTED);
+        }
+    }
+
+    @Test
+    void parseHttpRequestInvNumItems1() {
+        try {
+            HttpRequest request = httpParser.parseHttpRequest(
+                    generateBadTestCaseRequestLineInvNumItems1()
+            );
+            //fail();
+        } catch (HttpParsingException e) {
+            assertEquals(e.getErrorCode(), HttpStatusCodes.CLIENT_ERROR_400_BAD_REQUEST);
+        }
+    }
+
+    private InputStream generateValidGETTestCase() {
         String rawDataString = """
                 GET / HTTP/1.1
                 Host: localhost:8080
@@ -51,4 +94,53 @@ class HttpParserTest {
 
         return inputStream;
     }
+
+    private InputStream generateBadTestCaseMethodName1() {
+        String rawDataString = """
+                GET / HTTP/1.1
+                Host: localhost:8080
+                Accept-Language: es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3
+                """;
+
+        InputStream inputStream = new ByteArrayInputStream(
+                rawDataString.getBytes(
+                        StandardCharsets.US_ASCII
+                )
+        );
+
+        return inputStream;
+    }
+
+    private InputStream generateBadTestCaseMethodName2() {
+        String rawDataString = """
+                GETTTT / HTTP/1.1
+                Host: localhost:8080
+                Accept-Language: es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3
+                """;
+
+        InputStream inputStream = new ByteArrayInputStream(
+                rawDataString.getBytes(
+                        StandardCharsets.US_ASCII
+                )
+        );
+
+        return inputStream;
+    }
+
+    private InputStream generateBadTestCaseRequestLineInvNumItems1() {
+        String rawDataString = """
+                GET / AAAAAA HTTP/1.1
+                Host: localhost:8080
+                Accept-Language: es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3
+                """;
+
+        InputStream inputStream = new ByteArrayInputStream(
+                rawDataString.getBytes(
+                        StandardCharsets.US_ASCII
+                )
+        );
+
+        return inputStream;
+    }
+
 }
