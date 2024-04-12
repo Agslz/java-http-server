@@ -16,6 +16,7 @@ Este proyecto consiste en la implementación de un servidor HTTP en Java utiliza
 
 Para el desarrollo de este proyecto, se consultaron diversas fuentes de documentación, entre ellas:
 
+- Video tutorial series: [Java HTTP Server Tutorial](https://www.youtube.com/watch?v=ZESFHxvypUg&list=PLAuGQNR28pW56GigraPdiI0oKwcs8gglW&index=8) by [CoderFromScratch](https://www.youtube.com/@coderfromscratch1486)
 - [RFC 7230: Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing](https://datatracker.ietf.org/doc/html/rfc7230)
 - [RFC 7231: Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content](https://datatracker.ietf.org/doc/html/rfc7231)
 - [RFC 7232: Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests](https://datatracker.ietf.org/doc/html/rfc7232)
