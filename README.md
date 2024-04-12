@@ -20,7 +20,7 @@ Para el desarrollo de este proyecto, se consultaron diversas fuentes de document
 - [RFC 7230: Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing](https://datatracker.ietf.org/doc/html/rfc7230)
 - [RFC 7231: Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content](https://datatracker.ietf.org/doc/html/rfc7231)
 - [RFC 7232: Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests](https://datatracker.ietf.org/doc/html/rfc7232)
-- Medium article: [Creating a HTTP Server in Java](https://rjlfinn.medium.com/creating-a-http-server-in-java-9b6af7f9b3cd) by [Ryan Finn](https://rjlfinn.medium.com/)
+- Medium article: [Creating a HTTP Server in Java](https://rjlfinn.medium.com/creating-a-http-server-in-java-9b6af7f9b3cd) by [Robert Finn](https://rjlfinn.medium.com/)
 
 Estas fuentes fueron fundamentales para comprender los detalles del protocolo HTTP, la implementación del servidor y las mejores prácticas en Java para el manejo de conexiones TCP y multithreading.
 
